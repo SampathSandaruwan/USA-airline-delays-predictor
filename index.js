@@ -1,1 +1,1 @@
-require('./src/data');
+require('./src/analyze');
