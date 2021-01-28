@@ -1,0 +1,26 @@
+{
+  "name": "usa-airline-delays-predictor",
+  "version": "1.0.0",
+  "description": "A system to predict airline delays in USA due to weather condition depend on the traveling month(season)",
+  "main": "index.js",
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SampathSandaruwan/USA-airline-delays-predictor.git"
+  },
+  "author": "Sampath Sandaruwan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SampathSandaruwan/USA-airline-delays-predictor/issues"
+  },
+  "homepage": "https://github.com/SampathSandaruwan/USA-airline-delays-predictor#readme",
+  "keywords": [
+    "javascript", "data-mining"
+  ]
+}
