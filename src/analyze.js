@@ -2,6 +2,7 @@ const fs = require('fs');
 const utils = require('./utils');
 const output = require('./cli/output');
 const input = require('./cli/input');
+const analyzeData = require('./utils/analyze-data');
 
 const readTextFile = (file) => {
     output.initialize();
@@ -37,12 +38,16 @@ const readTextFile = (file) => {
                     }
                 }, data[0].weather_ct);
 
-                output.displayRangeDetails(maxDelay, minDelay, (totalDelayDueToWeather / totalNumberOfData).toFixed(2));
+                output.displayRangeDetails(maxDelay, minDelay, (totalDelayDueToWeather / totalNumberOfData).toFixed(5));
 
                 input.selectMonth(selectedMonth => {
-                    console.log('input comes from here', selectedMonth);
+                    // console.log('input comes from here', selectedMonth);
+                    if (!!selectedMonth) {
+                        const obj = analyzeData(data, 'weather_ct', selectedMonth);
+                        
+                        console.log(obj);
+                    }
                 });
-
             } else {
                 output.error('JSON conversion error!', error);
             }
