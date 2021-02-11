@@ -35,22 +35,18 @@ module.exports = (data, delayKey, selectedMonth) => {
     }, Number(obj.data[0]));
 
     const distribution = {};
-    let breakingPoint = max / 2;
-    breakingPoint -= ((breakingPoint % 10) - 10);
 
-    for (let i = 0; i < breakingPoint; i += 10) {
-        const key = `${i}-${i + 10} minutes`;
-        const rangedCount = obj.data.filter(_data => Number(_data) >= i && Number(_data) < (i + 10)).length;
-        if (rangedCount > 0) {
-            distribution[key] = rangedCount;
-        }
-    }
-    distribution[`more than ${breakingPoint} minutes`] = obj.data.filter(_data => Number(_data) >= 300).length;
+    distribution[`0-15 minutes`] = obj.data.filter(_data => Number(_data) >= 0 && Number(_data) < 15).length;
+    distribution[`15-30 minutes`] = obj.data.filter(_data => Number(_data) >= 15 && Number(_data) < 30).length;
+    distribution[`30-60 minutes`] = obj.data.filter(_data => Number(_data) >= 30 && Number(_data) < 60).length;
+    distribution[`1-5 hours`] = obj.data.filter(_data => Number(_data) >= 60 && Number(_data) < 300).length;
+    distribution[`5-10 hours`] = obj.data.filter(_data => Number(_data) >= 300 && Number(_data) < 600).length;
+    distribution['10-20 hours'] = obj.data.filter(_data => Number(_data) >= 600 && Number(_data) < 1200).length;
+    distribution['more than 20 hours'] = obj.data.filter(_data => Number(_data) >= 1200).length;
 
     for (const key of Object.keys(distribution)) {
         distribution[key] = `${(distribution[key] * 100 / length).toFixed(5)}%`
     }
-
 
     obj.length = length;
     obj.total = total.toFixed(5);
