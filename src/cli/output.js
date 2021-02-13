@@ -18,7 +18,13 @@ const displayRangeDetails = (maxDelay, minDelay, averageDelay) => {
     console.log('DATA:', 'Maximum delay', `${maxDelay} minutes`);
     console.log('DATA:', 'Minimum delay', `${minDelay} minutes`);
     console.log('DATA:', 'Average delay', `${averageDelay} minutes`);
-;}
+};
+
+const displayFinalResult = result => {
+    console.log('RESULT:', 'Total records:', result.length);
+    console.log('RESULT:', 'Average possible delay:', `${result.average} minutes`);
+    console.log('RESULT:', 'Delay Probabilities:', result.distribution);
+};
 
 const error = (message, ...err) => {
     console.error(message, err);
@@ -29,5 +35,6 @@ module.exports = {
     csvCompleted,
     cleaningCompleted,
     displayRangeDetails,
+    displayFinalResult,
     error
 };

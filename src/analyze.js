@@ -19,9 +19,6 @@ const readTextFile = (file) => {
 
                 output.cleaningCompleted(totalNumberOfData, utils.calculateMemorySize(data));
 
-                // const months = Array.from(new Set(data.map(d => Number(d.year) * 12 + (Number(d.month) - 1))))
-                // console.log(months.length);
-
                 const totalDelayDueToWeather = data.reduce((acc, cur) => acc + Number(cur.weather_ct), 0);
                 const maxDelay = data.reduce((acc, cur) => {
                     if (acc < cur.weather_ct) {
@@ -41,11 +38,10 @@ const readTextFile = (file) => {
                 output.displayRangeDetails(maxDelay, minDelay, (totalDelayDueToWeather / totalNumberOfData).toFixed(5));
 
                 input.selectMonth(selectedMonth => {
-                    // console.log('input comes from here', selectedMonth);
                     if (!!selectedMonth) {
                         const obj = analyzeData(data, 'weather_ct', selectedMonth);
                         
-                        console.log(obj);
+                        output.displayFinalResult(obj);
                     }
                 });
             } else {
